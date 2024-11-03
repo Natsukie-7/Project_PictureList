@@ -1,5 +1,17 @@
 <?php
 
-session_start();
+$data = ["name" => "nathan", "age" => 18];
 
-echo "HOME";
+ob_start();
+
+extract($data);
+
+
+require "./Home.php";
+
+$content = ob_get_contents();
+
+ob_end_clean();
+
+
+echo $content;
