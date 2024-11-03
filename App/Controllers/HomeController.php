@@ -6,6 +6,8 @@ class HomeController
 {
     public function index()
     {
-        var_dump("Home");
+        $data = ["name" => "nathan"];
+
+        view("Home", $data);
     }
 }
