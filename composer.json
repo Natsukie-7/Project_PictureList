@@ -1,0 +1,25 @@
+{
+    "name": "ibati/picuture-list",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        },
+        "files": [
+            "App/Frameworks/Helpers/Helper.php"
+        ]
+    },
+    "scripts": {
+        "server": "php -S localhost:7777 -t Public"
+    },
+    "authors": [
+        {
+            "name": "Nathan",
+            "email": "nathanfxs17@gmail.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "process-timeout": 0
+    }
+}
