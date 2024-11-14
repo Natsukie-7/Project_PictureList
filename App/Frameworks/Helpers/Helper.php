@@ -25,7 +25,7 @@ function routerExecute()
     }
 }
 
-function view(string $view, array $data = [])
+function view(string $view, ?array $data = [])
 {
     try {
         $engine = new Engine;
@@ -33,4 +33,10 @@ function view(string $view, array $data = [])
     } catch (\Throwable $err) {
         var_export($err->getMessage());
     }
+}
+
+function redirect(string $destiny)
+{
+    header("Location: $destiny");
+    exit;
 }
