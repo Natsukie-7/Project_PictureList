@@ -3,7 +3,10 @@
 return [
     "get" => [
         "/" => "HomeController@index",
-        "/login" => "AuthenticationController@renderLoginView"
+        "/login" => "AuthenticationController@renderLoginView:public",
+        "/logout" => "AuthenticationController@logout"
     ],
-    "post" => []
+    "post" => [
+        "/login/request-login" => "AuthenticationController@loginAuthentication"
+    ],
 ];

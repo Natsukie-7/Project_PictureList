@@ -9,6 +9,6 @@
 <body>
     <h1>Home</h1>
 
-    <p>Ola <?php echo $this->getUser()["name"]; ?> Você tem <?php echo $this->getUser()["age"]; ?> Anos</p>
+    <p>Ola <?php print_r($user)  ?> </p>
 </body>
 </html>

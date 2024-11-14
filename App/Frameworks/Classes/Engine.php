@@ -6,14 +6,6 @@ use Exception;
 
 class Engine
 {
-    private function getUser()
-    {
-        return [
-            "name" => "nathan",
-            "age" => 18
-        ];
-    }
-
     public function render(string $view, array $data)
     {
         $view = dirname(__FILE__, 2) . "/Resources/Views/$view.php";

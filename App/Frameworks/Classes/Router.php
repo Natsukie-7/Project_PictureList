@@ -18,6 +18,18 @@ class Router
 
         [$controller, $action] = explode("@", $routes[$this->request][$this->path]);
 
+        if (str_contains($action, ":")) {
+            [$action, $setting] = explode(':', $action);
+        }
+
+        if (!$setting || $setting !== "public") {
+            $isAuthorized = $this->validateAuth();
+
+            if (!$isAuthorized) {
+                return redirect("/login");
+            }
+        }
+
         $controllerNamespace = "App\\Controllers\\$controller";
 
         $this->controllerFound($controllerNamespace, $controller, $action);
@@ -47,4 +59,8 @@ class Router
         }
     }
 
+    private function validateAuth()
+    {
+        return isset($_SESSION["logged"]);
+    }
 }
