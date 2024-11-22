@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Criar Conta</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,26 +21,16 @@
         </nav>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main class="container">
-        <form action="process_login.php" method="POST">
-            <h1>Login</h1>
-            
-            <!-- Campo de Email -->
+        <form action="process_signup.php" method="POST">
+            <h1>Criar Conta</h1>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Digite seu email" required>
-            
-            <!-- Campo de Senha -->
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-            
-            <!-- Botão de Login -->
-            <button type="submit">Entrar</button>
-            
-            <!-- Mensagem de Erro -->
-            <?php if (isset($_GET['error'])) : ?>
-                <p style="color: red;">Email ou senha inválidos.</p>
-            <?php endif; ?>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+            <button type="submit">Criar Conta</button>
         </form>
     </main>
 </body>
