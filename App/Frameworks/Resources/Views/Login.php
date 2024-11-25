@@ -3,27 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="<?php echo $this->requestFile('logoPrinterest.png'); ?>" type="image/png">
+
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?php $this->cssEnv("style") ?>">
 </head>
 <body>
-    <!-- Menu Superior -->
-    <header>
-        <nav>
-            <a href="index.php" class="logo-container">
-                <img src="logoPrinterest.png" alt="Logo do Pinterest" class="logo">
-                <span class="logo-text">Pinterest</span>
-            </a>
-            <div class="menu-buttons">
-                <a href="login.php" class="button red">Entrar</a>
-                <a href="criar_conta.php" class="button gray">Criar Conta</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Conteúdo Principal -->
     <main class="container">
-        <form action="process_login.php" method="POST">
+        <form id="login-form" onsubmit="requestLogin(event)">
             <h1>Login</h1>
             
             <!-- Campo de Email -->
@@ -36,12 +24,12 @@
             
             <!-- Botão de Login -->
             <button type="submit">Entrar</button>
-            
-            <!-- Mensagem de Erro -->
-            <?php if (isset($_GET['error'])) : ?>
-                <p style="color: red;">Email ou senha inválidos.</p>
-            <?php endif; ?>
         </form>
+        
+        <!-- Botão Âncora -->
+        <a href="/register" class="register-link">Não tem uma conta? Cadastre-se</a>
     </main>
+
+    <script src="<?php $this->requestJsScript("login"); ?>"></script>
 </body>
 </html>

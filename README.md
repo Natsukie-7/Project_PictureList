@@ -41,3 +41,10 @@ Siga os passos abaixo para configurar e iniciar o projeto:
    composer run
    ```
 
+Configuração do banco de dados:
+
+Renomeie o arquivo .env.example para .env.
+Preencha as credenciais do banco de dados no arquivo .env.
+
+No MySQL, execute o seguinte comando para garantir que o tamanho máximo de pacote seja suficiente para o projeto:
+SET GLOBAL max_allowed_packet=67108864;

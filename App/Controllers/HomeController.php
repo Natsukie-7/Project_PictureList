@@ -6,7 +6,7 @@ class HomeController
 {
     public function index()
     {
-        $data = ["user" => $_SESSION["user"]];
+        $data = ["title" => "Home"];
 
         view("Home", $data);
     }

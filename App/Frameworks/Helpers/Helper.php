@@ -1,6 +1,7 @@
 <?php
 
 use App\Frameworks\Classes\Engine;
+use App\Frameworks\Classes\Macros;
 use App\Frameworks\Classes\Router;
 
 function path()
@@ -29,6 +30,7 @@ function view(string $view, ?array $data = [])
 {
     try {
         $engine = new Engine;
+        $engine->dependecies([new Macros]);
         echo $engine->render($view, $data);
     } catch (\Throwable $err) {
         var_export($err->getMessage());
