@@ -8,39 +8,52 @@ class Router
 {
     private string $path;
     private string $request;
+    private ?int $idParam;
 
     public function execute(array $routes)
     {
         $this->path = path();
         $this->request = request();
 
+        // Verifica se a rota existe
         $this->routerFound($routes);
 
         [$controller, $action] = explode("@", $routes[$this->request][$this->path]);
 
+        // Verifica se há configurações específicas na ação
+        $setting = null;
         if (str_contains($action, ":")) {
             [$action, $setting] = explode(':', $action);
         }
 
-        if (!$setting || $setting !== "public") {
-            $isAuthorized = $this->validateAuth();
-
-            if (!$isAuthorized) {
+        // Valida autenticação se a rota não for pública
+        if (!$this->isPublic($setting)) {
+            if (!$this->validateAuth()) {
                 return redirect("/login");
             }
         }
 
         $controllerNamespace = "App\\Controllers\\$controller";
 
+        // Garante que o controlador existe
         $this->controllerFound($controllerNamespace, $controller, $action);
-        
+
+        // Instancia o controlador e chama a ação
         $controllerInstance = new $controllerNamespace;
-        $controllerInstance->$action();
+        
+        isset($this->idParam) 
+            ? $controllerInstance->$action($this->idParam)
+            : $controllerInstance->$action();
     }
     private function routerFound(array $routes)
     {
         if (!isset($routes[$this->request])) {
             throw new Exception("O método de requisição << $this->request >> não existe");
+        }
+
+        if (str_contains($this->path, '?')) {
+            [$this->path, $params] = explode('?', $this->path);
+            $this->idParam = $params ?? null;
         }
 
         if (!isset($routes[$this->request][$this->path])) {
@@ -61,6 +74,11 @@ class Router
 
     private function validateAuth()
     {
-        return isset($_SESSION["logged"]);
+        return isset($_SESSION["isLogged"]);
+    }
+
+    private function isPublic(?string $setting): bool
+    {
+        return $setting === "public";
     }
 }

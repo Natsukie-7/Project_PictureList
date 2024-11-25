@@ -15,8 +15,8 @@ async function requestLogin(event) {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function() {
+        console.log(xhr)
         const response = JSON.parse(xhr.responseText);
-        console.log(response);
 
         if (response.message === "Login successful") {
             window.location.href = "/";  // Redireciona para a página inicial
